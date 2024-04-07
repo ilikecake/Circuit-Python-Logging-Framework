@@ -42,8 +42,6 @@ if fs_obj.readonly is False:
     logger.addHandler(logging.FileHandler('log.txt'))
 
 logger.setLevel(logging.ERROR)
-logger.info('Info message')
-logger.error('Error message')
 
 #Not sure if this is needed, but I saw a bootloop when I had no delay here
 time.sleep(1)
