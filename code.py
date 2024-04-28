@@ -62,6 +62,19 @@ elif (supervisor.runtime.usb_connected is False) and fs_obj.readonly:
 try:
     import main
 except Exception as e:
-    logger.error(traceback.format_exception(e))
-    raise e
-    
+    if fs_obj.readonly:
+        #Circuit python cannot write the error to flash. Assume the device is connected over USB
+        #and raise the error so the user can fix.
+        raise e
+    else:
+        #Circuit python can write the error to flash. Assume the device is not connected to a
+        #computer and reset the device to try to recover.
+        logger.error(traceback.format_exception(e))
+        time.sleep(20)
+        microcontroller.reset()
+else:
+    #Probably not needed, but we should never reach this point. If we do, log an error and reset.
+    #Note that if this occurs regularly, this might fill up the flash with error messages.
+    logger.error("Control reached the end of main. This should not happen.")
+    time.sleep(20)
+    microcontroller.reset()
