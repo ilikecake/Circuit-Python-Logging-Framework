@@ -32,8 +32,11 @@ import supervisor
 import storage
 import time
 import adafruit_logging as logging
+import os
 
 fs_obj = storage.getmount("/")
+
+#os.getenv("LOG_NAME")
 
 logger = logging.getLogger('error_log')
 logger.addHandler(logging.StreamHandler())  #Always write out to REPL

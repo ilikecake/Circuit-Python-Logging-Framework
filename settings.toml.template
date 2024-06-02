@@ -1,0 +1,41 @@
+#A template for the settings.toml file. If you are using wifi, set the wifi settings here.
+#If you need other settings, add them to this file.
+
+#-----------------------------------------------------------------------------------------------
+#Wifi settings
+
+#Put your wifi SSID here
+CIRCUITPY_WIFI_SSID = ""
+
+#The password to your wifi goes here
+CIRCUITPY_WIFI_PASSWORD = ""
+
+#Port number for the web workflow. Keep this at 80.
+CIRCUITPY_WEB_API_PORT = 80
+
+#Password for the web workflow
+CIRCUITPY_WEB_API_PASSWORD = ""
+
+#Name for the web workflow instance. This makes it easier to tell the difference if you have
+# multiple devices on your network.
+CIRCUITPY_WEB_INSTANCE_NAME = ""
+
+#-----------------------------------------------------------------------------------------------
+#Logging framework specific settings
+
+#Name of the logger used by the class.
+LOG_NAME = "error_log"
+
+#Name of the log file on disk.
+LOG_FILENAME = "log.txt"
+
+#The max size of the log file in bytes.
+LOG_FILE_MAX_SIZE = 1000
+
+#Number of log files to keep.
+LOG_FILES_TO_KEEP = 3
+
+#Set to true to reset the controller after logging an error.
+LOG_AUTO_RESTART = True
+
+#-----------------------------------------------------------------------------------------------
