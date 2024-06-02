@@ -39,7 +39,7 @@ logger = logging.getLogger('error_log')
 logger.addHandler(logging.StreamHandler())  #Always write out to REPL
 if fs_obj.readonly is False:
     #Write to file if we can
-    logger.addHandler(logging.FileHandler('log.txt'))
+    logger.addHandler(logging.RotatingFileHandler('log.txt', 'a', 1000, 3))
 
 logger.setLevel(logging.ERROR)
 
