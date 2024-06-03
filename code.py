@@ -36,13 +36,12 @@ import os
 
 fs_obj = storage.getmount("/")
 
-#os.getenv("LOG_NAME")
-
-logger = logging.getLogger('error_log')
+logger = logging.getLogger(os.getenv("LOG_NAME"))
 logger.addHandler(logging.StreamHandler())  #Always write out to REPL
 if fs_obj.readonly is False:
     #Write to file if we can
-    logger.addHandler(logging.RotatingFileHandler('log.txt', 'a', 1000, 3))
+    print("File Access Enabled")
+    logger.addHandler(logging.RotatingFileHandler(os.getenv("LOG_FILENAME"), 'a', os.getenv("LOG_FILE_MAX_SIZE"), os.getenv("LOG_FILES_TO_KEEP")))
 
 logger.setLevel(logging.ERROR)
 
@@ -63,6 +62,7 @@ elif (supervisor.runtime.usb_connected is False) and fs_obj.readonly:
 #print("Read Only:", fs_obj.readonly)
 
 try:
+    logger.info("Running main...")
     import main
 except Exception as e:
     if fs_obj.readonly:
@@ -73,8 +73,9 @@ except Exception as e:
         #Circuit python can write the error to flash. Assume the device is not connected to a
         #computer and reset the device to try to recover.
         logger.error(traceback.format_exception(e))
-        time.sleep(20)
-        microcontroller.reset()
+        if os.getenv("LOG_AUTO_RESTART") is "True":
+            time.sleep(20)
+            microcontroller.reset()
 else:
     #Probably not needed, but we should never reach this point. If we do, log an error and reset.
     #Note that if this occurs regularly, this might fill up the flash with error messages.
