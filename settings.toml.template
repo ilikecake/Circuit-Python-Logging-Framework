@@ -36,6 +36,6 @@ LOG_FILE_MAX_SIZE = 1000
 LOG_FILES_TO_KEEP = 3
 
 #Set to true to reset the controller after logging an error.
-LOG_AUTO_RESTART = True
+LOG_AUTO_RESTART = "True"
 
 #-----------------------------------------------------------------------------------------------
