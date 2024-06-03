@@ -14,8 +14,8 @@ This has been tested on the ESP32-S3 Feather Running Circuit Python 9.0.3
 
 ## To use this code:
 1. If you already have code in the code.py file, rename it to main.py. From now on, all user code should go into main.py.
-2. Copy the boot.py and code.py files to the root of your Circuit Python drive. 
-3. Make sure you have set up your [settings.toml](https://learn.adafruit.com/scrolling-countdown-timer/create-your-settings-toml-file) file if you want wifi access to the device. 
+2. Copy `boot.py`, `code.py`, `safemode.py`, and `settings.toml.template` to the root of your Circuit Python drive. 
+3. Rename `settings.toml.template` to `settings.toml`. Open that file and update wifi settings if you are using wifi. You can also change some of the settings of the logger in this file. 
 
 ## Notes:
  * supervisor.runtime.usb_connected is true when we are connected over USB
